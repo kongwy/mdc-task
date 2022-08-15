@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 
 struct Incident: Codable {
-    static var decoder: JSONDecoder = {
+    static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return decoder

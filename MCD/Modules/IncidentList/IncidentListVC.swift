@@ -46,6 +46,7 @@ class IncidentListVC: UIViewController {
     func setupTableView() {
         contentView.delegate = self
         contentView.dataSource = self
+        contentView.register(IncidentCell.self, forCellReuseIdentifier: "incident")
     }
 
     func requestData() {
@@ -68,10 +69,11 @@ extension IncidentListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "incident", for: indexPath) as! IncidentCell
+        cell.update(with: incidents[indexPath.row])
+        return cell
     }
 }
 
 extension IncidentListVC: UITableViewDelegate {
-    
 }
