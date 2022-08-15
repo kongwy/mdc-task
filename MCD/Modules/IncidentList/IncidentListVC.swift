@@ -56,18 +56,22 @@ class IncidentListVC: UIViewController {
         contentView.delegate = self
         contentView.dataSource = self
         contentView.register(IncidentCell.self, forCellReuseIdentifier: "incident")
+
+        contentView.refreshControl = UIRefreshControl()
+        contentView.refreshControl?.addTarget(self, action: #selector(requestData), for: .valueChanged)
     }
 
-    func requestData() {
+    @objc func requestData() {
         AF.request(IncidentListVC.dataURL).validate()
             .responseDecodable(of: [Incident].self, decoder: Incident.decoder) { [weak self] response in
-            switch response.result {
-            case .success(let value):
-                self?.incidents = value
-            case .failure(let error):
-                debugPrint(error)
+                switch response.result {
+                case .success(let value):
+                    self?.incidents = value
+                case .failure(let error):
+                    debugPrint(error)
+                }
+                self?.contentView.refreshControl?.endRefreshing()
             }
-        }
     }
 
     func updateList() {
