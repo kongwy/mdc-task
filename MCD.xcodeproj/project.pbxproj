@@ -10,9 +10,13 @@
 		5852E3FB808040A7E39E8E58 /* Pods_MCD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 771B16A491B2F459A8999D33 /* Pods_MCD.framework */; };
 		5A1FE60D28AA7513005C2C1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE60C28AA7513005C2C1F /* AppDelegate.swift */; };
 		5A1FE60F28AA7513005C2C1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE60E28AA7513005C2C1F /* SceneDelegate.swift */; };
-		5A1FE61128AA7513005C2C1F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE61028AA7513005C2C1F /* RootViewController.swift */; };
+		5A1FE61128AA7513005C2C1F /* IncidentListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE61028AA7513005C2C1F /* IncidentListVC.swift */; };
 		5A1FE61628AA7517005C2C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FE61528AA7517005C2C1F /* Assets.xcassets */; };
 		5A1FE61928AA7517005C2C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A1FE61728AA7517005C2C1F /* LaunchScreen.storyboard */; };
+		5A1FE62728AA7C9D005C2C1F /* IncidentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE62628AA7C9D005C2C1F /* IncidentTableView.swift */; };
+		5A1FE62928AA7E0E005C2C1F /* IncidentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE62828AA7E0E005C2C1F /* IncidentCell.swift */; };
+		5A1FE62D28AA7F37005C2C1F /* Incident.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE62C28AA7F37005C2C1F /* Incident.swift */; };
+		5A1FE62F28AA8919005C2C1F /* IncidentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1FE62E28AA8919005C2C1F /* IncidentStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +24,14 @@
 		5A1FE60928AA7513005C2C1F /* MCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A1FE60C28AA7513005C2C1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A1FE60E28AA7513005C2C1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A1FE61028AA7513005C2C1F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		5A1FE61028AA7513005C2C1F /* IncidentListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentListVC.swift; sourceTree = "<group>"; };
 		5A1FE61528AA7517005C2C1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A1FE61828AA7517005C2C1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A1FE61A28AA7517005C2C1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A1FE62628AA7C9D005C2C1F /* IncidentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentTableView.swift; sourceTree = "<group>"; };
+		5A1FE62828AA7E0E005C2C1F /* IncidentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentCell.swift; sourceTree = "<group>"; };
+		5A1FE62C28AA7F37005C2C1F /* Incident.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incident.swift; sourceTree = "<group>"; };
+		5A1FE62E28AA8919005C2C1F /* IncidentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentStatus.swift; sourceTree = "<group>"; };
 		7048995871DF6914A67E9C3D /* Pods-MCD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MCD.debug.xcconfig"; path = "Target Support Files/Pods-MCD/Pods-MCD.debug.xcconfig"; sourceTree = "<group>"; };
 		771B16A491B2F459A8999D33 /* Pods_MCD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MCD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,12 +71,56 @@
 			children = (
 				5A1FE60C28AA7513005C2C1F /* AppDelegate.swift */,
 				5A1FE60E28AA7513005C2C1F /* SceneDelegate.swift */,
-				5A1FE61028AA7513005C2C1F /* RootViewController.swift */,
+				5A1FE62028AA7B2F005C2C1F /* Modules */,
 				5A1FE61528AA7517005C2C1F /* Assets.xcassets */,
 				5A1FE61728AA7517005C2C1F /* LaunchScreen.storyboard */,
 				5A1FE61A28AA7517005C2C1F /* Info.plist */,
 			);
 			path = MCD;
+			sourceTree = "<group>";
+		};
+		5A1FE62028AA7B2F005C2C1F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5A1FE62B28AA7F1F005C2C1F /* Common */,
+				5A1FE62128AA7B5A005C2C1F /* IncidentList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5A1FE62128AA7B5A005C2C1F /* IncidentList */ = {
+			isa = PBXGroup;
+			children = (
+				5A1FE61028AA7513005C2C1F /* IncidentListVC.swift */,
+				5A1FE62328AA7BC2005C2C1F /* View */,
+			);
+			path = IncidentList;
+			sourceTree = "<group>";
+		};
+		5A1FE62328AA7BC2005C2C1F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A1FE62628AA7C9D005C2C1F /* IncidentTableView.swift */,
+				5A1FE62828AA7E0E005C2C1F /* IncidentCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5A1FE62A28AA7EB6005C2C1F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5A1FE62C28AA7F37005C2C1F /* Incident.swift */,
+				5A1FE62E28AA8919005C2C1F /* IncidentStatus.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5A1FE62B28AA7F1F005C2C1F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5A1FE62A28AA7EB6005C2C1F /* Model */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		8197672618995F29735A3887 /* Frameworks */ = {
@@ -85,7 +137,6 @@
 				7048995871DF6914A67E9C3D /* Pods-MCD.debug.xcconfig */,
 				2DE69EA4E0C1B8E1734C19CC /* Pods-MCD.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -203,8 +254,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A1FE61128AA7513005C2C1F /* RootViewController.swift in Sources */,
+				5A1FE61128AA7513005C2C1F /* IncidentListVC.swift in Sources */,
+				5A1FE62D28AA7F37005C2C1F /* Incident.swift in Sources */,
+				5A1FE62728AA7C9D005C2C1F /* IncidentTableView.swift in Sources */,
+				5A1FE62F28AA8919005C2C1F /* IncidentStatus.swift in Sources */,
 				5A1FE60D28AA7513005C2C1F /* AppDelegate.swift in Sources */,
+				5A1FE62928AA7E0E005C2C1F /* IncidentCell.swift in Sources */,
 				5A1FE60F28AA7513005C2C1F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
