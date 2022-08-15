@@ -54,6 +54,7 @@ extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "map", for: indexPath) as! MapCell
+            cell.update(coordinate: incident?.coordinate, icon: incident?.typeIcon)
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "property", for: indexPath) as! PropertyCell

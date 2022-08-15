@@ -53,6 +53,6 @@ class PropertyCell: UITableViewCell {
 
     func update(title: String?, content: String?) {
         self.title.text = title
-        self.content.text = content ?? "Not available."
+        self.content.text = content ?? "Not available"
     }
 }
