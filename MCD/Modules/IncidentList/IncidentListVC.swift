@@ -102,6 +102,10 @@ extension IncidentListVC: UITableViewDataSource {
 
 extension IncidentListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailVC()
+        detailVC.incident = sortedIncidents[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
