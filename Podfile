@@ -5,5 +5,6 @@ target 'MCD' do
 
   # Pods for MCD
   pod 'SnapKit', '~> 5.6.0'
+  pod 'Alamofire'
 
 end

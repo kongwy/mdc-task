@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum IncidentStatus: String {
+enum IncidentStatus: String, Codable {
     case underControl = "Under control"
     case onScene = "On Scene"
     case outOfControl = "Out of control"

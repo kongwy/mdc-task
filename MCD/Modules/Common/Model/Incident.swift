@@ -8,7 +8,13 @@
 import Foundation
 import CoreLocation
 
-struct Incident {
+struct Incident: Codable {
+    static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
+
     let title: String?
     let callTime: Date?
     let lastUpdated: Date?
