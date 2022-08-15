@@ -80,6 +80,7 @@ class IncidentCell: UITableViewCell {
     }
 
     func update(with model: Incident) {
+        icon.kf.indicatorType = .activity
         icon.kf.setImage(with: model.typeIcon)
         date.text = model.lastUpdated?.customFormatted()
         title.text = model.title
