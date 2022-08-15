@@ -14,9 +14,20 @@ class IncidentListVC: UIViewController {
 
     lazy var incidents = [Incident]() {
         didSet {
-            contentView.reloadData()
+            updateList()
         }
     }
+    lazy var ascendSort = false { // descend sort by default
+        didSet {
+            updateList()
+        }
+    }
+    lazy var sortedIncidents = [Incident]()
+    lazy var sortButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        return button
+    }()
+
     lazy var contentView = IncidentTableView(frame: .zero, style: .insetGrouped)
 
     override func viewDidLoad() {
@@ -25,6 +36,7 @@ class IncidentListVC: UIViewController {
         view.backgroundColor = .systemGroupedBackground
         title = "Incidents"
         navigationItem.largeTitleDisplayMode = .always
+        navigationItem.setRightBarButton(sortButton, animated: true)
 
         setupTableView()
         requestData()
@@ -60,20 +72,36 @@ class IncidentListVC: UIViewController {
             }
         }
     }
+
+    func updateList() {
+        sortedIncidents = incidents.sorted(by: { a, b in
+            guard let dateA = a.lastUpdated else { return true }
+            guard let dateB = b.lastUpdated else { return true }
+            if dateA > dateB { return !ascendSort } else { return ascendSort }
+        })
+        contentView.reloadData()
+    }
+
+    @objc func sortButtonTapped() {
+        ascendSort.toggle()
+    }
 }
 
 extension IncidentListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 { return incidents.count }
+        if section == 0 { return sortedIncidents.count }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "incident", for: indexPath) as! IncidentCell
-        cell.update(with: incidents[indexPath.row])
+        cell.update(with: sortedIncidents[indexPath.row])
         return cell
     }
 }
 
 extension IncidentListVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
