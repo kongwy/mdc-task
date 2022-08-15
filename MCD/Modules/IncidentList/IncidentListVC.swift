@@ -23,10 +23,7 @@ class IncidentListVC: UIViewController {
         }
     }
     lazy var sortedIncidents = [Incident]()
-    lazy var sortButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortButtonTapped))
-        return button
-    }()
+    lazy var sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortButtonTapped))
 
     lazy var contentView = IncidentTableView(frame: .zero, style: .insetGrouped)
 

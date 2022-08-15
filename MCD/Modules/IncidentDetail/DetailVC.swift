@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import MapKit
 
 class DetailVC: UIViewController {
     lazy var incident: Incident? = nil {
@@ -17,12 +18,14 @@ class DetailVC: UIViewController {
         }
     }
     lazy var contentView = UITableView(frame: .zero, style: .insetGrouped)
+    lazy var navButton = UIBarButtonItem(image: UIImage(systemName: "arrow.triangle.turn.up.right.diamond.fill"), style: .plain, target: self, action: #selector(navButtonTapped))
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setRightBarButton(navButton, animated: true)
 
         setupTableView()
     }
@@ -45,6 +48,12 @@ class DetailVC: UIViewController {
         contentView.dataSource = self
         contentView.register(MapCell.self, forCellReuseIdentifier: "map")
         contentView.register(PropertyCell.self, forCellReuseIdentifier: "property")
+    }
+
+    @objc func navButtonTapped() {
+        guard let coordinate = incident?.coordinate else { return }
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+        mapItem.openInMaps()
     }
 }
 
