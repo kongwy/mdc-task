@@ -23,7 +23,7 @@ CocosPods used for third-party libraries, so `pod install` is needed before comp
 - [x] The list is to be sorted by incident last updated date, with an option to change the order (ascending/descending)
 - [x] Selecting an incident will show the details
 - [x] Show some type of indicator while the incident type icon is loading
-- [ ] If using SwiftUI, add a search bar (bonus for UIKit)
+- [x] If using SwiftUI, add a search bar (bonus for UIKit)
 
 ### Incident Details
 
