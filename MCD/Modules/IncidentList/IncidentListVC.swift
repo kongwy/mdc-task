@@ -12,6 +12,7 @@ import UIKit
 class IncidentListVC: UIViewController {
     static let dataURL = "https://run.mocky.io/v3/5e90b420-388e-4913-b240-b5326823212c"
 
+    // Data List
     lazy var incidents = [Incident]() {
         didSet {
             updateList()
@@ -24,6 +25,10 @@ class IncidentListVC: UIViewController {
     }
     lazy var sortedIncidents = [Incident]()
     lazy var sortButton = UIBarButtonItem(image: UIImage(systemName: "arrow.up.arrow.down"), style: .plain, target: self, action: #selector(sortButtonTapped))
+
+    // Search Bar
+    lazy var searchController = UISearchController(searchResultsController: nil)
+    lazy var searchResult = [Incident]()
 
     lazy var contentView = IncidentTableView(frame: .zero, style: .insetGrouped)
 
@@ -43,6 +48,7 @@ class IncidentListVC: UIViewController {
         super.viewWillLayoutSubviews()
 
         setupView()
+        setupSearchController()
     }
 
     func setupView() {
@@ -59,6 +65,13 @@ class IncidentListVC: UIViewController {
 
         contentView.refreshControl = UIRefreshControl()
         contentView.refreshControl?.addTarget(self, action: #selector(requestData), for: .valueChanged)
+    }
+
+    func setupSearchController() {
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 18, bottom: 0, trailing: 18)
+        searchController.searchResultsUpdater = self
+        contentView.tableHeaderView = searchController.searchBar
     }
 
     @objc func requestData() {
@@ -90,23 +103,37 @@ class IncidentListVC: UIViewController {
 
 extension IncidentListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive { return searchResult.count }
         if section == 0 { return sortedIncidents.count }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "incident", for: indexPath) as! IncidentCell
-        cell.update(with: sortedIncidents[indexPath.row])
+        cell.update(with: searchController.isActive ? searchResult[indexPath.row] : sortedIncidents[indexPath.row])
         return cell
     }
 }
 
 extension IncidentListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchController.dismiss(animated: true)
+
         let detailVC = DetailVC()
         detailVC.incident = sortedIncidents[indexPath.row]
         navigationController?.pushViewController(detailVC, animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension IncidentListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let keyword = searchController.searchBar.text {
+            searchResult = sortedIncidents.filter({ incident in
+                return incident.title?.contains(keyword) ?? false
+            })
+            contentView.reloadData()
+        }
     }
 }
