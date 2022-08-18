@@ -121,7 +121,19 @@ extension IncidentListVC: UITableViewDelegate {
 
         let detailVC = DetailVC()
         detailVC.incident = sortedIncidents[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+        // navigationController?.pushViewController(detailVC, animated: true)
+
+        // wrap DetailVC in a new NavVC and presented as UISheetPresentationController
+        let navVC = UINavigationController(rootViewController: detailVC)
+        if let sheet = navVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersGrabberVisible = true
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+        present(navVC, animated: true)
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
