@@ -40,6 +40,6 @@ CocosPods used for third-party libraries, so `pod install` is needed before comp
 ### Additional Bonus Tasks
 
 - [x] Ensure the app adapts appropriately when changing between light and dark mode
-- [ ] Display the details view as a card view popup instead of pushing to a new page
+- [x] Display the details view as a card view popup instead of pushing to a new page
 - [ ] iPad support with a split view/sidebar
 - [x] Pull to refresh the incident list
